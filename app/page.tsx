@@ -11,7 +11,8 @@ export default async function Home() {
     const authResult = await auth()
     userId = authResult.userId
   } catch {
-    // Clerk not configured - continue to show landing page
+    // Clerk configuration error (invalid/missing credentials) - continue to show landing page
+    // The page will render for unauthenticated users even if Clerk is not properly configured
   }
   
   if (userId) {
@@ -126,7 +127,7 @@ export default async function Home() {
       {/* Footer */}
       <footer className="container mx-auto px-4 py-8 border-t border-zinc-800">
         <div className="text-center text-zinc-500">
-          <p>&copy; 2026 Link Shortener. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Link Shortener. All rights reserved.</p>
         </div>
       </footer>
     </div>
